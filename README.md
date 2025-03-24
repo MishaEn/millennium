@@ -67,7 +67,6 @@ CREATE TABLE user_order
     id         int auto_increment primary key,
     user_id    int                                 not null,
     product_id int                                 not null,
-    quantity   int       default 1                 not null,
     created_at datetime  default CURRENT_TIMESTAMP not null,
     updated_at datetime  default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
     constraint fk_user_order_user foreign key (user_id) references user (id) on delete cascade,
