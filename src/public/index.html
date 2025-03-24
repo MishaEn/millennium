@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание</title>
+</head>
+<body>
+    <h1>Задания</h1>
+
+    <h2>Задание 1</h2>
+    <p><a href="/user/1" target="_blank">Получить данные клиента (GET-запрос)</a></p>
+
+    <h2>Задание 2</h2>
+    <h3>Добавить товары</h2>
+    <form id="addProductsForm">
+        <label for="products">Введите товары в формате JSON:</label><br>
+        <textarea id="products" name="products" rows="5" cols="50" required>
+[
+    {"title": "Товар 1", "price": 100},
+    {"title": "Товар 2", "price": 200}
+]
+        </textarea><br><br>
+        <button type="submit">Отправить (POST-запрос)</button>
+
+        <h2>Задание 4</h2>
+        <p>Реализация signelton: millennium/src/databases/MySql.php</p>
+    </form>
+
+    <script>
+        document.getElementById('addProductsForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: document.getElementById('products').value
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+</head>
+<body>
+    <div>
+        <h1>Заказы пользователя</h1>
+        <span id="clientName"></span>
+    </div>
+    <p>Заказы:</p>
+    <ul id="ordersList">
+    </ul>
+
+    
+    <script>
+        const path = window.location.pathname;
+        const id = path.split('/').pop();
+
+        // Функция для загрузки данных пользователя
+        async function fetchUserData() {
+            const response = await fetch(`/api/user/${id}`);
+
+            if (!response.ok) {
+                conosle.console.error('Что-то не так')
+            }
+            const data = await response.json();
+
+            document.getElementById('clientName').textContent = data.clientName;
+
+            const ordersList = document.getElementById('ordersList');
+
+            if (!data.orders || data.orders.length < 0) {
+                ordersList.innerHTML = '<li>Заказов нет.</li>';
+
+                return;
+            } 
+
+            data.orders.forEach(order => {
+                    const li = document.createElement('li');
+                    li.textContent = `${order.title} - ${order.price} руб.`;
+                    ordersList.appendChild(li);
+            });
+            
+        }
+
+        // Загружаем данные при загрузке страницы
+        fetchUserData();
+    </script>
+</body>
+</html>
