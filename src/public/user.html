@@ -20,7 +20,7 @@
         const path = window.location.pathname;
         const id = path.split('/').pop();
 
-        async function fetchUserData() {
+        async function fetchOrders() {
             const response = await fetch(`/api/user/${id}`);
 
             if (!response.ok) {
@@ -46,7 +46,7 @@
             
         }
 
-        fetchUserData();
+        fetchOrders();
     </script>
 </body>
 </html>
