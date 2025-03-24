@@ -24,12 +24,12 @@ services:
       - php-fpm
 
   php-fpm:
-    image: php:8.2-fpm  # Используйте нужную версию PHP
+    image: php:8.2-fpm
     container_name: php-fpm
     volumes:
-      - ./src:/var/www/html  # Монтирование директории с кодом
+      - ./src:/var/www/html
     environment:
-      - DB_HOST=mysql  # Имя контейнера MySQL
+      - DB_HOST=mysql
       - DB_NAME=millennium
       - DB_USER=user
       - DB_PASSWORD=password

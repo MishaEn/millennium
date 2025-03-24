@@ -20,7 +20,6 @@
         const path = window.location.pathname;
         const id = path.split('/').pop();
 
-        // Функция для загрузки данных пользователя
         async function fetchUserData() {
             const response = await fetch(`/api/user/${id}`);
 
@@ -47,7 +46,6 @@
             
         }
 
-        // Загружаем данные при загрузке страницы
         fetchUserData();
     </script>
 </body>
